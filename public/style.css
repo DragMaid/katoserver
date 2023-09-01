@@ -1,0 +1,124 @@
+:root {
+    --color-primary: #006241;
+    --color-secondary: #d50032;
+    --color-extra: #d4e9e2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-top {
+    display: flex;
+    position: sticky;
+    height: 50px;
+    width: 100%;
+    justify-content: space-between;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
+    flex-direction: row;
+}
+
+.navbar-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.ebook-logo {
+    display: flex;
+    width: 50px;
+    height: 100%;
+}
+
+.ebook-logo img {
+    flex-grow: 1;
+    margin: 5px;
+}
+
+.ebook-text {
+    border-bottom: 3px solid black;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-btn {
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    height: 100%;
+    list-style: none;
+}
+
+.navbar-btn:hover {
+    background-color: var(--color-extra);
+}
+
+.navbar-btn a {
+    color: #000;
+    text-decoration: none;
+}
+
+.main-section {
+    position: relative;
+
+    width: 100%;
+    height: 80vh;
+    max-height: 800px;
+
+    background-image: url("assets/bg2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all -.5s ease;
+    transition: all 0.5s ease;
+}
+
+.main-section .btn-left {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+}
+
+.main-section .btn-right {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+}
+
+.main-section .main-btn {
+    background-color: pink;
+    opacity: 0.7;
+    border: none;
+    color: white;
+    padding: 8px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+}
+
+.main-section .main-btn:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.main-text {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.main-text * {
+    color: white;
+    text-shadow: 4px 4px black;
+}

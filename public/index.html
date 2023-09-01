@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="index.js"></script>
+    <script src="/reload/reload.js"></script>
+    <title>eBookstore</title>
+</head>
+
+<body>
+    <div class="navbar-top">
+        <div class="navbar-right">
+            <div class="ebook-logo"><img src="assets/book.png" alt="book.png"></div>
+            <div class="ebook-text">eBook</div>
+        </div>
+        <ul class="navbar-left">
+            <li class="navbar-btn"><a href="#">SHOP</a></li>
+            <li class="navbar-btn"><a href="#">REVIEW</a></li>
+            <li class="navbar-btn"><a href="#">ABOUT</a></li>
+        </ul>
+    </div>
+    <div class="main-section" id="main-section">
+        <div class="main-text">
+            <h1>NAME-TAG</h1>
+            <h3>BOOKS FOR ANYONE AND EVERYONE</h3>
+        </div>
+        <button onclick=changeBackground(-1) class="main-btn btn-right"><i class="fa fa-arrow-left"></i></button>
+        <button onclick=changeBackground(1) class="main-btn btn-left"><i class="fa fa-arrow-right"></i></button>
+    </div>
+</body>
+
+</html>
