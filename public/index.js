@@ -1,5 +1,6 @@
 var currentIndex = 1;
 var slideLength = 3;
+
 function changeBackground(index) {
     currentIndex += index;
     if (currentIndex != 0 && currentIndex <= slideLength) {
@@ -26,27 +27,46 @@ function lock(e) {
 };
 
 function move(e) {
-  if(locked) {
-    let dx = unify(e).clientX - x0
-    let s = Math.sign(dx);
+    if (locked) {
+        let dx = unify(e).clientX - x0
+        let s = Math.sign(dx);
 
-    if((cardIndex > 0 || s < 0) && (cardIndex < cardNumber || s > 0))
-    if(cardIndex != 1 || s < 0)
-    cardSlider.style.setProperty('--card-index', cardIndex -= s);
-    cardSlider.style.setProperty('--tx', '0px');
-    cardSlider.classList.toggle('smooth', !(locked = false));
-    x0 = null;
-  }
+        if ((cardIndex > 0 || s < 0) && (cardIndex < cardNumber || s > 0))
+            if (cardIndex != 1 || s < 0) {
+                cardSlider.style.setProperty('--card-index', cardIndex -= s);
+                changeBrightness(cardIndex);
+            }
+        cardSlider.style.setProperty('--tx', '0px');
+        cardSlider.classList.toggle('smooth', !(locked = false));
+        x0 = null;
+    }
 };
 
-function unify(e) { return e.changedTouches ? e.changedTouches[0] : e };
+document.getElementById("ic-1").style.filter = "brightness(100%)";
+
+function changeBrightness(index) {
+    for (let i = 1; i <= cardNumber; i++) {
+        let lIndex = index;
+        let elementId = "ic-" + i.toString();
+        if (i === lIndex) {
+            document.getElementById(elementId).style.filter = "brightness(100%)";
+        } else {
+            document.getElementById(elementId).style.filter = "brightness(60%)";
+        }
+    }
+
+};
+
+function unify(e) {
+    return e.changedTouches ? e.changedTouches[0] : e
+};
 
 function drag(e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  if(locked) {
-    cardSlider.style.setProperty('--tx', `${Math.round(unify(e).clientX - x0)}px`)
-}
+    if (locked) {
+        cardSlider.style.setProperty('--tx', `${Math.round(unify(e).clientX - x0)}px`)
+    }
 };
 
 cardSlider.addEventListener('mousedown', lock, false);

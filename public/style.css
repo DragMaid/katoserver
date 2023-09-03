@@ -7,16 +7,18 @@
 body {
     padding: 0;
     margin: 0;
-    font-size: 15px;
+    font-size: 18px;
     background-color: var(--color-primary);
+    font-family: "Arial";
+    line-height: 1.5;
 }
 
 .navbar-top {
     display: flex;
-   position: fixed;
-   top: 0;
-   z-index: 1000;
-   width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
     height: clamp(5vh, 50px, 10vh);
     justify-content: space-between;
     flex-direction: row;
@@ -44,7 +46,7 @@ body {
 
 .ebook-text {
     border-bottom: clamp(.1em, 2px, .2em) solid black;
-    font-size: clamp(1.5vw, 1.2em, 2vw);
+    font-size: clamp(1.5vw, 1.2rem, 2vw);
     color: black;
 }
 
@@ -66,8 +68,8 @@ body {
     padding: 0px clamp(1vw, 10px, 1.2vw);
     height: 100%;
     list-style: none;
-    font-size: clamp(1.2vw, 1em, 2vw);
-    font-weight: bold;
+    font-size: clamp(1.2vw, 1rem, 2vw);
+    font-weight: 400;
     cursor: pointer;
     transition: 0.2s;
     width: calc(100% / 3);
@@ -89,7 +91,7 @@ body {
 .main-section {
     position: relative;
     width: 100%;
-    aspect-ratio: 19/10;
+    aspect-ratio: 17/10;
     min-height: 80vh;
     overflow: hidden;
     margin-top: clamp(5vh, 50px, 10vh);
@@ -132,7 +134,7 @@ body {
     text-align: center;
     text-decoration: none;
     display: grid;
-    font-size: clamp(1vw, 1rem, 5%)
+    font-size: clamp(1vw, 1rem, 5%);
     width: clamp(1vw, 40px, 5%);
     aspect-ratio: 1/1;
     justify-content: center;
@@ -147,16 +149,16 @@ body {
 .cards-container {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-evenly;
     margin-bottom: clamp(10vh, 40px, 10vh);
+    padding: 0;
 }
 
 .contributors-info h1 {
-    margin-top: 10vh;
+    margin-top: 5vh;
     margin-bottom: 0;
     text-align: center;
-    font-size: clamp(3vw, 1rem, 5vw);
+    font-size: clamp(1vw, 2.5rem, 5vw);
 }
 
 .info-card {
@@ -164,8 +166,10 @@ body {
     border: min(0.5vh, 0.1rem) solid black;
     width: clamp(20vw, 300px, 25vw);
     aspect-ratio: 10/15;
+    height: auto;
     border-radius: clamp(3vh, 20px, 5vh);
-    margin-top: 10vh;
+    padding-top: 0;
+    margin-top: 5vh;
     align-items: center;
     flex-direction: column;
     overflow: hidden;
@@ -173,7 +177,7 @@ body {
 }
 
 .info-card:hover {
-    margin-top: 0;
+    transform: translate(0, -5vh);
 }
 
 .card-avatar-bg {
@@ -187,19 +191,19 @@ body {
 }
 
 .card-avatar-logo {
-    line-height: 0;   
-    display: inline-block; 
+    line-height: 0;
+    display: inline-block;
     margin: clamp(1vh, 5px, 1.2vh);
-    border: clamp(0.8vw, 4px, 1.2vw) solid rgba(200,200,200,0.4);
-    border-radius: 50%; 
-    box-shadow: 0px 0px 5px rgba(0,0,0,0.4);
+    border: clamp(0.8vw, 4px, 1.2vw) solid rgba(200, 200, 200, 0.4);
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
     transition: linear 0.25s;
     width: clamp(8vw, 70px, 9vw);
     aspect-ratio: 1/1;
 }
 
 .name-tag {
-    font-size: clamp(3vh, 1rem, 4vh);
+    font-size: clamp(1vh, 1.8rem, 4vh);
 }
 
 .card-text {
@@ -209,23 +213,24 @@ body {
 }
 
 .card-text p {
-  text-align: center;
-  padding: 0 5px;
-  font-weight: 300;
-  font-size: clamp(1.4vw, 15px, 1.5vw);
+    text-align: center;
+    padding: 0 10px;
+    font-weight: 300;
+    font-size: clamp(1vw, 1.4rem, 1.5vw);
 }
 
 .info-section: {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 .info-section h1 {
     text-align: center;
-    font-size: clamp(3vw, 1rem, 5vw);
+    font-size: clamp(1vw, 2.5rem, 3vw);
+    margin-top: clamp(10vh, 40px, 10vh);
 }
 
-.info-1 {
+.info-box {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
@@ -237,15 +242,6 @@ body {
 .info-1 .info-img {
     border-top-right-radius: clamp(3vh, 20px, 5vh);
     border-bottom-right-radius: clamp(3vh, 20px, 5vh);
-}
-
-.info-2 {
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    padding: 10vh 8vw;
-    padding-top: 0;
-    height: clamp(20%, 50vh, 60%);
 }
 
 .info-2 .info-img {
@@ -261,8 +257,8 @@ body {
     align-items: center;
     text-align: center;
     font-weight: 300;
-    padding: 0 8px;
-    font-size: clamp(1.5vw, 1.2rem, 1.7vw);
+    padding: 10px 8px;
+    font-size: clamp(1vw, 1.5rem, 1.5vw);
 }
 
 .info-img {
@@ -293,26 +289,36 @@ footer {
     background-color: var(--color-secondary);
     border-top: 2px dimgrey;
     padding: 5px 5px;
-    font-size: clamp(1.5vw, 1.2em, 2vw);
+    font-size: clamp(1vw, 1.2rem, 1.5vw);
 }
 
 /* for laptop and pc based  */
- @media only screen and (min-width: 1200px) {
-    main {
-        margin: 0 10vw;
+@media only screen and (min-width: 1200px) {
+    body {
+        font-size: 15px;
     }
+
+    main {
+        margin: 0 15vw;
+    }
+
     .main-section {
         margin: 0 0;
     }
+
     .info-1 {
-        padding: 10vh 6vw;
+        padding: 2vh 5vw;
     }
+
     .info-2 {
-        padding: 10vh 6vw;
+        padding: 10vh 5vw;
     }
+
     .navbar-top {
         padding: 0 0;
         margin: 0 0;
+        height: clamp(5vh, 70px, 15vh);
+
     }
 }
 
@@ -320,18 +326,21 @@ footer {
     body {
         font-size: 20px;
     }
+
     .navbar-top {
-        position : absolute;
+        position: absolute;
         flex-direction: column;
-        height: 12vh;
+        height: clamp(40px, 20vh, 120px);
     }
+
     .ebook-logo {
+        display: none;
         margin-right: 10px;
         height: 100%;
     }
 
     .ebook-text {
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
 
     .navbar-left {
@@ -340,17 +349,18 @@ footer {
         justify-content: center;
         height: 70%
     }
+
+    .navbar-btn {
+        font-size: 1rem;
+    }
+
     .main-section {
         position: relative;
         width: 100%;
         aspect-ratio: 19/10;
-        min-height: 30vh;
-        margin-top: 12vh;
+        min-height: 35vh;
+        margin-top: clamp(40px, 20vh, 120px);
         overflow: hidden;
-    }
-
-    .navbar-btn {
-        font-size:  0.8rem;
     }
 
     .main-section .main-btn {
@@ -358,6 +368,7 @@ footer {
     }
 
     .contributors-info h1 {
+        font-size: 1.5rem;
         margin-top: 5vh;
     }
 
@@ -369,17 +380,113 @@ footer {
     .cards-container {
         flex-direction: row;
         justify-content: space-between;
-        width: calc(calc(var(--card-number) * 50vw) + calc(calc(var(--card-number) - 1) * 10px)); 
-        padding-left: 25vw;
-        margin-left: calc(calc(calc(50vw + 10px) * calc(-1 * calc(var(--card-index) - 1))) + var(--tx, 0px));
+        width: calc(calc(var(--card-number) * 75vw) + calc(calc(var(--card-number) - 1) * 30px));
+        padding-left: calc(calc(100vw - 75vw) / 2);
+        margin-left: calc(calc(calc(75vw + 30px) * calc(-1 * calc(var(--card-index) - 1))) + var(--tx, 0px));
     }
 
-    .smooth { transition: .3s ease-out; }
+    .smooth {
+        transition: .3s ease-out;
+    }
 
     .info-card {
         margin-top: 5px;
         border-radius: 10px;
-        width: 50vw;
+        width: 75vw;
         filter: brightness(60%);
+    }
+
+    .card-text p {
+        line-height: 1.5;
+        font-size: 1rem;
+    }
+
+    .info-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
+
+    .info-section h1 {
+        font-size: 1.5rem;
+        margin-top: 0;
+    }
+
+    .info-box {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        width: 100% padding: 5px 5px;
+    }
+
+    .card-avatar-logo {
+        width: 30%;
+    }
+
+    .info-img {
+        width: 100%;
+        aspect-ratio: auto;
+    }
+
+    .info-2 .info-img {
+        border-radius: 0;
+        border: 0;
+        border-bottom: 0;
+    }
+
+    .info-1 .info-img {
+        border-radius: 0;
+        /*border: 1px solid black;*/
+        border: 0;
+        border-bottom: 0;
+    }
+
+    .info-img img {}
+
+    .info-text {
+        width: 100%;
+        height: auto;
+        padding: 0;
+        border: 0;
+        font-size: 1.2rem;
+        line-height: 1.5;
+    }
+
+    .info-1 .info-img {
+        -webkit-box-ordinal-group: 1;
+        -moz-box-ordinal-group: 1;
+        -ms-flex-order: 1;
+        -webkit-order: 1none order: 1;
+    }
+
+    .info-1 .info-text {
+        -webkit-box-ordinal-group: 2;
+        -moz-box-ordinal-group: 2;
+        -ms-flex-order: 2;
+        -webkit-order: 2;
+        order: 2;
+        border-top: 0;
+    }
+
+    .info-2 .info-text {
+        border-top: 0;
+    }
+
+    .info-2 {
+        margin-top: 2vh;
+    }
+
+    footer {
+        font-size: 0.8rem;
     }
 }
