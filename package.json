@@ -5,7 +5,9 @@
     "main": "server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon -e html,css,js --ignore .git/,node_modules/ -- server.js"
+        "dev": "nodemon -e html,css,js --ignore .git/,node_modules/ -- server-dev.js",
+        "deploy": "node server-deploy.js"
+
     },
     "author": "",
     "license": "ISC",
