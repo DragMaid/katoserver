@@ -9,6 +9,10 @@ app.set('port', process.env.PORT || port)
 app.use(express.static('public'))
 
 app.get('/', function(req, res) {
+    res.sendFile(path.join(publicDir, 'test.html'))
+})
+
+app.get('/sgkspread', function(req, res) {
     res.sendFile(path.join(publicDir, 'index.html'))
 })
 

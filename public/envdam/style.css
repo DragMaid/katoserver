@@ -1,0 +1,132 @@
+:root {
+    --primary-color: #0ab002;
+    --secondary-color: #3f4a3c;
+    --extra-color: #a3af9e;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    background-color: var(--secondary-color);
+    font-family: "Arial";
+    line-height: 1.8;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    position: absolute;
+    height: 10vh;
+    width: 100%;
+    /*left: 0;*/
+    background-color: var(--secondary-color);
+    border: 10px solid var(--primary-color);
+    padding: 0;
+    margin: 0;
+}
+
+.left-nav {
+    width: 25%;
+}
+
+.right-nav {
+    width: 25%;
+}
+
+.middle-nav {
+    height: 150%;
+    width: 50%;
+    background-color: var(--secondary-color);
+    border: 5px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.middle-left-nav {
+    position: absolute;
+    left: calc(25% - calc(10vh * 150 / 100));
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-bottom: calc(10vh * 150 / 100) solid transparent;
+    border-right: calc(10vh * 150 / 100) solid var(--secondary-color);
+}
+
+.middle-right-nav {
+    position: absolute;
+    left: 75%;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-bottom: calc(10vh * 150 / 100) solid transparent;
+    border-left: calc(10vh * 150 / 100) solid var(--secondary-color);
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    padding-top: 150px;
+}
+
+.seperator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: clamp(10vh, 40px, 10vh);
+    padding: 0;
+    padding: 0 5vw;
+}
+
+.card {
+    display: flex;
+    border: min(0.5vh, 0.1rem) solid black;
+    width: clamp(20vw, 300px, 25vw);
+    aspect-ratio: 10/15;
+    height: auto;
+    border-radius: clamp(3vh, 20px, 5vh);
+    padding-top: 0;
+    margin-top: 7vh;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translate(0, -5vh);
+}
+
+.card-img {
+    display: flex;
+    height: 50%;
+    width: 100%;
+}
+
+.card-img img {
+    flex-grow: 1;
+}
+
+.card-text {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 50px;
+    text-align: center;
+    background-color: var(--extra-color);
+}
