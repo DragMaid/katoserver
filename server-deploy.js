@@ -1,15 +1,17 @@
 const express = require('express');
 const path = require('path');
 
-const publicDir = path.join(__dirname, 'public');
+const publicDir = path.join(__dirname, 'sites');
 const port = 3000;
 
 const app = new express();
+const defaultPage = "katoserver";
+
 app.set('port', process.env.PORT || port)
 app.use(express.static('public'))
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(publicDir, 'test.html'))
+    res.sendFile(path.join(publicDir, defaultPage, 'index.html'))
 })
 
 app.get('/sgkspread', function(req, res) {

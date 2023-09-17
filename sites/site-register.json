@@ -1,0 +1,14 @@
+[
+    {
+        "name": "envdame",
+        "subdomain": "envdame",
+        "description": "khkt contest project"
+
+    },
+
+    {
+        "name": "sgkspread",
+        "subdomain": "sgkspread",
+        "description": "startup contest project"
+    }
+]

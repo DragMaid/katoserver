@@ -3,21 +3,26 @@ const http = require('http');
 const path = require('path');
 const reload = require('reload');
 
-const webProjects = ['sgkspread', 'envdam'];
-
-const publicDir = path.join(__dirname, 'public');
+const publicDir = path.join(__dirname, 'sites');
+const siteRegister = path.join(publicDir, 'site-register.json');
+const siteData = require(siteRegister);
+const defaultSite = "katoserver";
 
 const app = new express();
 app.set('port', process.env.PORT || 3000)
-app.use(express.static('public'))
+app.use(express.static('sites'))
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(publicDir, 'index.html'))
+    res.redirect(path.join(defaultSite));
 })
 
-for (let i = 0; i < webProjects.length; i++) {
-    app.get('/' + webProjects[i], function(req, res) {
-        res.sendFile(path.join(publicDir, webProjects[i], 'index.html'))
+app.get('/sites', function(req, res) {
+    res.sendFile(siteRegister);
+})
+
+for (let i = 0; i < siteData.length; i++) {
+    app.get('/' + siteData[i].subdomain, function(req, res) {
+        res.redirect(path.join(String(siteData[i].name)));
     })
 }
 

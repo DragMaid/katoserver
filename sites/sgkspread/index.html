@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <script src="/reload/reload.js"></script>
+    <title>eBookstore</title>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <div class="navbar-top">
+            <div class="navbar-left">
+                <div class="ebook-logo"><img src="" alt=""></div>
+                <div class="ebook-text">eBook</div>
+            </div>
+            <ul class="navbar-right">
+                <li class="navbar-btn" href="#">SHOP</li>
+                <li class="navbar-btn" href="">REVIEW</li>
+                <li class="navbar-btn" href="">ABOUT</li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-section" id="main-section">
+        <div id="slide-show" class="slide-show">
+            <img src="assets/bg1.jpg">
+            <img src="assets/bg2.jpg">
+            <img src="assets/bg3.jpg">
+        </div>
+        <button onclick=changeBackground(-1) class="main-btn btn-right"><i class="fa fa-arrow-left"></i></button>
+        <button onclick=changeBackground(1) class="main-btn btn-left"><i class="fa fa-arrow-right"></i></button>
+    </div>
+    <main>
+        <div class="contributors-info">
+            <h1>WHO ARE WE?</h1>
+            <div class="cards-slider">
+                <div id="cardsContainer" class="cards-container">
+                    <div id="ic-1" class="info-card">
+                        <div class="card-avatar-bg">
+                            <div class="card-avatar-logo">
+                                <img src="" alt="">
+                            </div>
+                            <div class="name-tag">Michael</div>
+                        </div>
+                        <div class="card-text">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida volutpat leo ac placerat. In auctor placerat mollis. Aenean fermentum arcu metus, vel dapibus mi tristique nec. Mauris at posuere.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="ic-2" class="info-card">
+                        <div class="card-avatar-bg">
+                            <div class="card-avatar-logo">
+                                <img src="" alt="">
+                            </div>
+                            <div class="name-tag">Eleina</div>
+                        </div>
+                        <div class="card-text">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida volutpat leo ac placerat. In auctor placerat mollis. Aenean fermentum arcu metus, vel dapibus mi tristique nec. Mauris at posuere.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="ic-3" class="info-card">
+                        <div class="card-avatar-bg">
+                            <div class="card-avatar-logo">
+                                <img src="" alt="">
+                            </div>
+                            <div class="name-tag">Bob</div>
+                        </div>
+                        <div class="card-text">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida volutpat leo ac placerat. In auctor placerat mollis. Aenean fermentum arcu metus, vel dapibus mi tristique nec. Mauris at posuere.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info-section">
+            <h1>WHAT WE AIM TO ACHIEVE</h1>
+            <div class="info-1 info-box">
+                <div class="info-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum ullamcorper urna condimentum porta. Nulla volutpat feugiat vulputate. Pellentesque vitae nibh et ligula ultricies viverra. Duis maximus dui sit amet metus pharetra faucibus. Nunc sollicitudin viverra molestie. Aliquam euismod, purus eget ultrices ultricies, ligula ante aliquet lectus, vel pretium arcu purus et risus. Aenean non congue purus. Nulla non tempus sapien. Suspendisse eu velit condimentum, tristique nulla et, dignissim neque.
+                </div>
+                <div class="info-img">
+                    <img src="assets/book-pile.svg">
+                </div>
+            </div>
+            <div class="info-2 info-box">
+                <div class="info-img">
+                    <img src="assets/book-open.svg">
+                </div>
+                <div class="info-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum ullamcorper urna condimentum porta. Nulla volutpat feugiat vulputate. Pellentesque vitae nibh et ligula ultricies viverra. Duis maximus dui sit amet metus pharetra faucibus. Nunc sollicitudin viverra molestie. Aliquam euismod, purus eget ultrices ultricies, ligula ante aliquet lectus, vel pretium arcu purus et risus. Aenean non congue purus. Nulla non tempus sapien. Suspendisse eu velit condimentum, tristique nulla et, dignissim neque.
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <header>Contact info</header>
+        <p>Phone number: 092323232</p>
+        <p>Email: youremail@gmail.com</p>
+        <p>Address: 31b yourroad district n city</p>
+    </footer>
+</body>
+
+<script src="index.js"></script>
+
+</html>
