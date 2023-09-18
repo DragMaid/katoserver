@@ -1,23 +1,31 @@
 const express = require('express');
+const http = require('http');
 const path = require('path');
 
 const publicDir = path.join(__dirname, 'sites');
-const port = 3000;
+const siteRegister = path.join(publicDir, 'site-register.json');
+const siteData = require(siteRegister);
+const defaultSite = "katoserver";
 
 const app = new express();
-const defaultPage = "katoserver";
-
-app.set('port', process.env.PORT || port)
-app.use(express.static('public'))
+app.set('port', process.env.PORT || 3000)
+app.use(express.static('sites'))
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(publicDir, defaultPage, 'index.html'))
+    res.redirect(path.join(defaultSite));
 })
 
-app.get('/sgkspread', function(req, res) {
-    res.sendFile(path.join(publicDir, 'index.html'))
+app.get('/sites', function(req, res) {
+    res.sendFile(siteRegister);
 })
 
-app.listen(port, () => {
-    console.log(`Server app listening on port ${port}`)
+for (let i = 0; i < siteData.length; i++) {
+    app.get('/' + siteData[i].subdomain, function(req, res) {
+        res.redirect(path.join(String(siteData[i].name)));
+    })
+}
+
+var server = http.createServer(app)
+server.listen(app.get('port'), function() {
+    console.log('Web server listening on port ' + app.get('port'))
 })
