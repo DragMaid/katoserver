@@ -1,5 +1,4 @@
 const express = require('express');
-const http = require('http');
 const path = require('path');
 
 const publicDir = path.join(__dirname, 'sites');
@@ -12,11 +11,11 @@ app.set('port', process.env.PORT || 3000)
 app.use(express.static('sites'))
 
 app.get('/', function(req, res) {
-    res.redirect(path.join(defaultSite));
+    res.redirect('/' + defaultSite);
 })
 
 app.get('/sites', function(req, res) {
-    res.sendFile(siteRegister);
+    res.redirect('/' + 'site-register.json');
 })
 
 for (let i = 0; i < siteData.length; i++) {
@@ -25,7 +24,6 @@ for (let i = 0; i < siteData.length; i++) {
     })
 }
 
-var server = http.createServer(app)
-server.listen(app.get('port'), function() {
-    console.log('Web server listening on port ' + app.get('port'))
-})
+const server = app.listen(app.get('port'), function() {
+    console.log("Server is live now.");
+});
