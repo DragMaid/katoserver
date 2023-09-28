@@ -17,24 +17,30 @@
 
 <body>
     <div class="nav-bar">
-        <div class="left-nav">
-            <div class="rect"></div>
-            <div class="side-right"></div>
+        <div class="side-nav-bar-container">
+            <div class="left-nav">
+                <div class="rect"></div>
+                <div class="side-right"></div>
+            </div>
+            <div class="right-nav">
+                <div class="side-left"></div>
+                <div class="rect"></div>
+            </div>
         </div>
-        <div class="right-nav">
-            <div class="side-left"></div>
-            <div class="rect"></div>
+        <div class="nav-bar-middle-container">
+            <div class="left-side"></div>
+            <div class="rect">
+                <h2 style="color:#142C16"> TAI BIẾN THIÊN NHIÊN </br><span class="sub-text" style="color:#748A44">KHI TRÁI ĐÂT LÊN TIẾNG</span></h2>
+            </div>
+            <div class="right-side"></div>
         </div>
     </div>
-    <div class="nav-bar-middle-container">
-        <div class="left-side"></div>
-        <div class="rect"></div>
-        <div class="right-side"></div>
-    </div>
-    <div class="video-container">
-        <video controls>
-            <source src="video.mp4" type="video/mp4">
-        </video>
+    <div class="video-section">
+        <div class="video-container">
+            <video controls>
+                <source src="video.mp4" type="video/mp4">
+            </video>
+        </div>
     </div>
     <div class="card-seperator">
         CÁC LOAI HÌNH TAI BIÊN THIÊN NHIÊN
@@ -63,7 +69,7 @@
                             <img src="assets/bg2.jpg" width="100%" object-fit="cover">
                         </div>
                         <div class="card-text">
-                            -Nắng nóng là dạng thời tiết đặc biệt trong mùa hè, khi nhiệt độ không khí cao nhất trong ngày vượt quá 35 độ C và độ ẩm không khí xuống dưới 65%.-Rét hại là dạng thời tiết đặc biệt xảy ra trong mùa đông ở miền Bắc khi nhiệt độ không khí trung bình ngày xuống dưới 13 độ C
+                            -Nắng nóng là dạng thời tiết đặc biệt trong mùa hè, khi nhiệt độ không khí cao nhất trong ngày vượt quá 35 độ C và độ ẩm không khí xuống dưới 65%.</br>-Rét hại là dạng thời tiết đặc biệt xảy ra trong mùa đông ở miền Bắc khi nhiệt độ không khí trung bình ngày xuống dưới 13 độ C
                         </div>
                     </div>
                 </div>
@@ -99,7 +105,7 @@
                             <img src="assets/bg5.jpg" width="100%" object-fit="cover">
                         </div>
                         <div class="card-text">
-                            -Sạt lở đất là hiện tượng đất bị sạt, trượt, lở do tác động của mưa, lũ hoặc dòng chảy. -Sụt lún đất là hiện tượng đất bị tụt xuống thấp hơn so với khu vực xung quanh, do ảnh hưởng của mưa, lũ hoặc dòng chảy
+                            -Sạt lở đất là hiện tượng đất bị sạt, trượt, lở do tác động của mưa, lũ hoặc dòng chảy. </br>-Sụt lún đất là hiện tượng đất bị tụt xuống thấp hơn so với khu vực xung quanh, do ảnh hưởng của mưa, lũ hoặc dòng chảy
                         </div>
                     </div>
                 </div>
@@ -126,25 +132,6 @@
     </div>
 
 </body>
-<script>
-    const swiper = new Swiper('.swiper', {
-        // Optional parameters
-        direction: 'horizontal',
-        loop: true,
-
-        // If we need pagination
-        pagination: {
-            el: '.swiper-pagination',
-        },
-
-        // Navigation arrows
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-
-        // And if we need scrollbar
-    });
-</script>
+<script src="swiper.js"></script>
 
 </html>
