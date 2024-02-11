@@ -56,10 +56,7 @@ body {
     aspect-ratio: 16 / 2;
     max-height: 45px;
     min-height: 30px;
-    border: 2px solid black;
     width: 90%;
-    border-radius: 15px;
-
     overflow: hidden;
 }
 
@@ -67,6 +64,7 @@ body {
     width: 100%;
     height: 100%;
     font-size: 1rem;
+    border-radius: 20px;
     padding-left: .5rem;
 }
 
@@ -75,7 +73,8 @@ body {
     width: 100%;
     margin-top: .5rem;
     border: 1px solid black;
-    overflow: scroll;
+    overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 .result-container {

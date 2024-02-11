@@ -1,0 +1,171 @@
+:root {
+    --color-primary: #142C16;
+    --color-secondary: #516353;
+    --color-extra: #748A44;
+}
+
+html,
+body {
+    font-family: 'Arial';
+
+    padding: 0 0;
+    margin: 0 0;
+
+    height: 100%;
+    width: 100%;
+
+    overflow: hidden;
+}
+
+.web-whole {
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+#filesfrm {
+	display: flex;
+	justify-content: center;
+	flex-grow: 1;
+	width: 100%; 
+}
+
+#filesfld {
+	display: none;
+}
+
+#fileslbl {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 60%;
+	height: 100%;
+	color: black;
+	text-align: center;
+	border: 2px dashed red;
+
+}
+
+#progress {
+	width: 0;
+	background-color: green;
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 25px;
+	padding: 0 5px;
+}
+
+.logo {
+	width: 100%;
+	height: 60%;
+	border: 1px solid green;
+}
+
+.logo > img {
+	height: 100%;
+	width: 100%;
+}
+
+.submit-section {
+	display: flex;
+	flex-direction: column; 
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+	height: 90%;
+	border: 1px solid red;
+}
+
+.file-manager-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+}
+
+.search-bar {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	height: 8vh;
+	width: 70%;
+	border: 2px solid black;
+}
+
+.search-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	aspect-ratio: 1 / 1;
+	border: 1px solid black;
+}
+
+.search-icon {
+}
+
+.manager-container {
+	display: flex;
+	flex-direction: row;
+	width: 70%;
+	height: 80vh;
+	border: 1px solid black;
+	margin-bottom: 40px;
+}
+
+.file-preview {
+	height: 100%;
+	width: 70%;
+	border: 1px solid black;
+
+}
+
+.info-preview {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.preview-image-info {
+	width: 100%;
+	aspect-ratio: 3 / 2;
+	border: 1px solid black;
+}
+
+.text-info {
+	flex-grow: 1;
+	padding: 10px;
+}
+
+.text-info > * {
+	margin-top: 10px; 
+}
+
+.result-card {
+	display: flex;
+	align-items: center;
+	height: 30px;
+	width: 100%;
+	border: 2px solid black;
+}
+
+.file-name {
+	padding-left: 10px;
+}
+.file-icon {
+	display: flex; 
+	justify-content: center; 
+	align-items: center;
+	aspect-ratio: 1 / 1;
+	height: 100%;
+	border: 1px solid black;
+}
+
+.image-preview { 
+	width: 100%;
+	height: 100%;
+}

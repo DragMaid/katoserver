@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KATODRIVE</title>
+    <!--Fontsytle google link-->
+    <link rel="stylesheet" href="style.css">
+    <!--Reload nodemon module-->
+	<script src="/reload/reload.js"></script>
+    <script src="index.js" defer></script>
+    <script src="formupload.js" defer></script>
+    <script src="fileshow.js" defer></script>
+    <script src="filefunc.js" defer></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+	<div class="web-whole">
+		<div class="submit-section">
+			<div class="logo">
+				<img src="" alt="logo.png">
+			</div>
+			<form id="filesfrm" action="/upload" method="post" onsubmit="return submitFilesForm(this);">
+				<input type="file" name="filesfld" id="filesfld" accept="*/*" onchange="submitFilesForm(this.form);" multiple />
+				<label for="filesfld" id="fileslbl"
+					ondragover="stopDefault(event);dragOver(this);"
+					ondragenter="stopDefault(event);dragOver(this);"
+					ondragleave="stopDefault(event);dragLeave(this);"
+					ondrop="stopDefault(event);dragLeave(this);addFilesAndSubmit(event);">
+					DROP OR OPEN <br> FILE HERE
+				</label>
+			</form>
+			<div style="text-align: left;">
+				<div id="progress"></div>
+			</div>
+		</div>
+		<div class="file-manager-section">
+			<div class="search-bar">
+				<div class="text-input" data-search></div>
+				<div class="search-button">
+					<i class="search-icon material-symbols-outlined">search</i>
+				</div>
+			</div>
+		 	<div class="manager-container">
+				<div class="file-preview" result-container>
+				</div>
+				<div class ="info-preview">
+					<div class="preview-image-info">
+						<img class="image-preview" src="" alt="" preview-image>
+					</div>
+					<div class= "text-info">
+						<div class="created-time-info" date-info>Date: </div>
+						<div class="creator-info" creator-info>Creator: </div>
+						<div class="size-info" size-info>Size: </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<template result-card-template>
+		<div class="result-card" onclick="card_callback(this)">
+			<div class="file-icon">
+				<i class="material-symbols-outlined" file-icon></i>
+			</div>
+			<a class="file-name" file-name></a>
+			<!--<a class="description card-link" data-description></a>-->
+		</div>
+	</template>
+
+</body>
+
+</html>

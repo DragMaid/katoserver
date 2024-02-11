@@ -1,0 +1,117 @@
+const path = require('path');
+const fs = require('fs');
+const files_json_path = path.join(__dirname, 'file-registry.json');
+const tmp_folder_path = path.join(__dirname, 'tmp');
+const backup_folder_path = path.join(__dirname, 'backup');
+const storage_folder_path = path.join(__dirname, 'storage');
+
+function generate_files_json(route) {
+	const files = fs.readdirSync(route, 'utf8');
+	const response = [];
+	for (let file of files) {
+		const extension = path.extname(file);
+		const filesize = fs.statSync(route + file).size;
+		response.push({ filename: file, extension: extension, filesize: filesize });
+	}
+	const data = JSON.stringify(response);
+	fs.writeFileSync('file-registry.json', data);
+}
+
+function move_file_to_folder(file, folder, callback) {
+	var folderpath;
+	switch (folder) {
+		case 'tmp': folderpath = tmp_folder_path; break;
+		case 'storage': folderpath = storage_folder_path; break;
+		case 'backup': folderpath = backup_folder_path; break;
+		default: console.log("WARNING: folder path not found");
+	}
+	file.mv(path.join(folderpath, file.name), (error) => {
+		if (error) console.log("ERROR: " + error);
+	})
+	return callback();
+}
+
+function remove_file_from_folder(file, folder, callback) {
+	var folderpath;
+	switch (folder) {
+		case 'tmp': folderpath = tmp_folder_path; break;
+		case 'storage': folderpath = storage_folder_path; break;
+		case 'backup': folderpath = backup_folder_path; break;
+		default: console.log("WARNING: folder path not found");
+	}
+	fs.rm(path.join(folderpath, file.name), {recursive:false}, (error) => {
+		if (error) console.log("ERROR: " + error);
+	});
+	return callback();
+}
+
+function get_file_info(file) {
+	const filename = file.name;
+	const filepath = './tmp/' + filename;
+	const extension = path.extname(filepath);
+	const filesize = fs.statSync(filepath).size;
+	const mimetype = file.mimetype.split('/')[0];
+	const daycreated = String(Date());
+	return {filename: filename, extension: extension, filesize: filesize, mimetype: mimetype, date: daycreated};
+}
+
+function find_file_in_list(filename, filelist) {
+	var target_index = -1;
+	filelist.every( (dict, index) => { 
+		if (filename == dict.filename) target_index = index; return false;
+	}) 
+	return target_index;
+}
+
+function copy_file_to_storage(file) {
+}
+
+function add_file_to_json(file, callback) {
+	fs.readFile(files_json_path, 'utf-8', function(error, data) {
+		if (error) console.log("ERROR: " + error);
+		var filelist = JSON.parse(data);
+		var filedata = get_file_info(file);
+		var stat = find_file_in_list(filedata.filename, filelist);
+		if (stat!=-1) console.log("WARNING: file aready existed");
+		else {
+			filelist.push(filedata);
+			fs.writeFile(files_json_path, JSON.stringify(filelist), (error) => {
+				if (error) console.log("ERROR: " + error);
+				else callback();
+			})
+		}
+	})
+}
+
+function remove_file_from_json(file) {
+	fs.readFile(files_json_path, 'utf-8', function(error, data) {
+		if (error) console.log("ERROR: " + error);
+		var filelist = JSON.parse(data);
+		var filedata = get_file_info(file);
+		var stat = find_file_in_list(filedata.filename, filelist);
+		if (!stat) console.log("INFO: file doesn't exist");
+		else {
+			filelist.splice(stat, 1);
+			fs.writeFile(files_json_path, JSON.stringify(filelist), (error) => {
+				if (error) console.log("ERROR: " + error);
+			})
+		}
+	})
+}
+
+
+function clear_file_tmp(filename) {
+	fs.rmSync(path.join(tmp_folder_path, filename));
+}
+
+
+module.exports = {
+	generate_files_json: generate_files_json,
+	get_file_info: get_file_info,
+	add_file_to_json: add_file_to_json,
+	remove_file_from_json: remove_file_from_json,
+	clear_file_tmp: clear_file_tmp,
+	move_file_to_folder: move_file_to_folder,
+	remove_file_from_folder: remove_file_from_folder
+}
+

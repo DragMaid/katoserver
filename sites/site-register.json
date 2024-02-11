@@ -10,5 +10,18 @@
         "name": "sgkspread",
         "subdomain": "sgkspread",
         "description": "startup contest project"
+    },
+
+    {
+        "name": "katoforum",
+        "subdomain": "katoforum",
+        "description": "forum presenting kato projects"
+    },
+
+    {
+        "name": "katodrive",
+        "subdomain": "katodrive",
+        "description": "a place to save your files"
     }
+
 ]
