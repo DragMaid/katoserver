@@ -3,7 +3,7 @@ function card_callback(card) {
 	const filepath = 'http://localhost:3000/storage/' + filename;
 	const filesize = card.getAttribute('size');
 	const filedate = card.getAttribute('date');
-	//document.querySelector('[preview-image]').src = filepath;
+	document.querySelector('[preview-image]').src = filepath;
 	document.querySelector('[size-info]').innerHTML = "Size: " + byte_convertion(filesize);
 	document.querySelector('[date-info]').innerHTML = "Date: " + filedate;
 	document.querySelector('[creator-info]').innerHTML = "Creator: Anoymous";

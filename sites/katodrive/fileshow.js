@@ -33,7 +33,7 @@ fetch(storageURL)
 			card.setAttribute('name', file.filename);
 			card.setAttribute('size', file.filesize);
 			card.setAttribute('mimetype', file.mimetype);
-			card.setAttribute('date', Date(file.date));
+			card.setAttribute('date', new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''));
 
             resultContainer.append(card);
         })
