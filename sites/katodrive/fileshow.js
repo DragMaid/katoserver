@@ -15,9 +15,16 @@ const searchInput = document.querySelector("[data-search]");
 const pageURL = String(document.URL);
 const mainURL = pageURL.substring(0, nthIndex(pageURL, '/', 3));
 const storageURL = mainURL + '/storage';
+document.querySelector('[url-container]').setAttribute('pageurl', mainURL);
 
 let files = [];
 
+function clear_files_cards() {
+    resultContainer.innerHTML = '';
+}
+
+function load_files_cards(reload) {
+if (reload) clear_files_cards();
 fetch(storageURL)
     .then(res => res.json())
     .then(data => {
@@ -33,17 +40,26 @@ fetch(storageURL)
 			card.setAttribute('name', file.filename);
 			card.setAttribute('size', file.filesize);
 			card.setAttribute('mimetype', file.mimetype);
-			card.setAttribute('date', new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''));
+			card.setAttribute('date', file.date);
 
             resultContainer.append(card);
+            return { 
+                filename: String(file.filename), 
+                filesize: String(file.filesize),
+                mimetype: String(file.mimetype),
+                element: card
+            };
         })
     })
+}
 
 searchInput.addEventListener("input", (e) => {
     const value = e.target.value;
-    sites.forEach(site => {
-        const isVisible = site.name.includes(value) || site.description.includes(value)
-        site.element.classList.toggle("hide", !isVisible)
+    files.forEach(file => {
+        const isVisible = file.filename.includes(value);
+        file.element.classList.toggle("hide", !isVisible); 
     })
 })
 
+load_files_cards(false);
+export { load_files_cards }

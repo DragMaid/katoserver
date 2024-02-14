@@ -27,11 +27,11 @@ function move_file_to_folder(file, folder, callback) {
 	}
 	file.mv(path.join(folderpath, file.name), (error) => {
 		if (error) console.log("ERROR: " + error);
+        else callback();
 	})
-	return callback();
 }
 
-function remove_file_from_folder(file, folder, callback) {
+function remove_file_from_folder(filename, folder, callback) {
 	var folderpath;
 	switch (folder) {
 		case 'tmp': folderpath = tmp_folder_path; break;
@@ -39,10 +39,10 @@ function remove_file_from_folder(file, folder, callback) {
 		case 'backup': folderpath = backup_folder_path; break;
 		default: console.log("WARNING: folder path not found");
 	}
-	fs.rm(path.join(folderpath, file.name), {recursive:false}, (error) => {
+	fs.rm(path.join(folderpath, filename), {recursive:false}, (error) => {
 		if (error) console.log("ERROR: " + error);
+        else callback();
 	});
-	return callback();
 }
 
 function get_file_info(file) {
@@ -51,29 +51,37 @@ function get_file_info(file) {
 	const extension = path.extname(filepath);
 	const filesize = fs.statSync(filepath).size;
 	const mimetype = file.mimetype.split('/')[0];
-	const daycreated = String(Date());
-	return {filename: filename, extension: extension, filesize: filesize, mimetype: mimetype, date: daycreated};
+	const daycreated = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
+	return {
+        filename: filename, 
+        extension: extension, 
+        filesize: filesize, 
+        mimetype: mimetype, 
+        date: daycreated
+    };
 }
 
 function find_file_in_list(filename, filelist) {
 	var target_index = -1;
-	filelist.every( (dict, index) => { 
-		if (filename == dict.filename) target_index = index; return false;
-	}) 
+    for (let i=0; i<filelist.length; i++) {
+        if (filename == filelist[i].filename) {
+            target_index = i;
+            break;
+        }
+    }
 	return target_index;
 }
 
-function copy_file_to_storage(file) {
-}
-
-function add_file_to_json(file, callback) {
+function add_file_to_json(file, exist_callback, callback) {
 	fs.readFile(files_json_path, 'utf-8', function(error, data) {
 		if (error) console.log("ERROR: " + error);
 		var filelist = JSON.parse(data);
 		var filedata = get_file_info(file);
 		var stat = find_file_in_list(filedata.filename, filelist);
-		if (stat!=-1) console.log("WARNING: file aready existed");
-		else {
+		if (stat!=-1) {
+            console.log("WARNING: file aready existed");
+            exist_callback();
+        } else {
 			filelist.push(filedata);
 			fs.writeFile(files_json_path, JSON.stringify(filelist), (error) => {
 				if (error) console.log("ERROR: " + error);
@@ -83,22 +91,23 @@ function add_file_to_json(file, callback) {
 	})
 }
 
-function remove_file_from_json(file) {
+function remove_file_from_json(filename, error_callback, callback) {
 	fs.readFile(files_json_path, 'utf-8', function(error, data) {
 		if (error) console.log("ERROR: " + error);
 		var filelist = JSON.parse(data);
-		var filedata = get_file_info(file);
-		var stat = find_file_in_list(filedata.filename, filelist);
-		if (!stat) console.log("INFO: file doesn't exist");
-		else {
+		var stat = find_file_in_list(filename, filelist);
+		if (stat==-1) {
+            console.log("WARNING: file doesn't exist");
+            error_callback();
+        } else {
 			filelist.splice(stat, 1);
 			fs.writeFile(files_json_path, JSON.stringify(filelist), (error) => {
 				if (error) console.log("ERROR: " + error);
+                else callback();
 			})
 		}
 	})
 }
-
 
 function clear_file_tmp(filename) {
 	fs.rmSync(path.join(tmp_folder_path, filename));

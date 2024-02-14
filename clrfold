@@ -1,0 +1,5 @@
+rm ./storage/*
+rm ./backup/*
+rm ./tmp/*
+echo "[]" > file-registry.json
+

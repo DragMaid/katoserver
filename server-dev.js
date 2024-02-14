@@ -30,29 +30,64 @@ app.use(express.json());
 app.use(express.urlencoded( { extended: false } ));
 app.use(upload());
 
-app.post("/upload", function(request, response) {
+function respond(res, code) {
+    res.writeHead(code, {
+        "Content-Type": "text/plain",
+        "Access-Control-Allow-Origin": "*" // Allow access from other domains
+    }); res.end(); 
+}
+
+
+app.post("/upload", function(req, res) {
     var files = new Array(); var filearray;
-    if(request.files) {
-        if(Array.isArray(request.files.filesfld)) {
-            filearray = request.files.filesfld;
+    var sent = false;
+
+    if(req.files) {
+        if(Array.isArray(req.files.filesfld)) {
+            filearray = req.files.filesfld;
         }
         else {
             filearray = new Array(1);
-            filearray[0] = request.files.filesfld;
+            filearray[0] = req.files.filesfld;
         }
 		for(var i = 0; i < filearray.length; i++) {
 			var file = filearray[i];
 			fileProcess.move_file_to_folder(file, 'tmp', () => {
-				fileProcess.add_file_to_json(file, () => {
+				fileProcess.add_file_to_json(file, () => { respond(res, 304); sent=true; }, () => {
 					fileProcess.move_file_to_folder(file, 'storage', ()=>{});
 					fileProcess.move_file_to_folder(file, 'backup', ()=>{});
-					fileProcess.remove_file_from_folder(file, 'tmp', ()=>{});
+					fileProcess.remove_file_from_folder(file.name, 'tmp', ()=>{});
+                    if (!sent) {
+                        respond(res, 200);
+                        sent = true; return;
+                    }
 				});
 			});
 		}
     }
-    setTimeout(function(){response.json(files);}, 1000);
-});
+
+    setTimeout(function(){ 
+        if (!sent) respond(res, 500);
+        sent = true;
+    }, 60000);
+})
+
+app.post("/katodrive/delete", function(req, res) {
+    var sent = false;
+    const filename = req.body.filename;
+    fileProcess.remove_file_from_json(filename, () => { respond(res, 304); sent=true; }, () => {
+        fileProcess.remove_file_from_folder(filename, 'storage', () => { 
+            if (!sent) {
+                respond(res, 200);
+                sent = true; return;
+            }
+        })
+    });
+    setTimeout(function(){ 
+        if (!sent) respond(res, 500);
+        sent = true;
+    }, 3000);
+})
 
 app.get('/', function(req, res) {
     res.redirect(path.join(defaultSite));

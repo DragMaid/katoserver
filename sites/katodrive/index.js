@@ -1,11 +1,15 @@
+const drop_note = document.querySelector('[drop-note]');
+
 function stopDefault(event) {
-	event.preventDefault();
-	event.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
 }
 
-function dragOver(label) {
+function dragOver() {
+    drop_note.style.display = 'flex';
 }
 
-function dragLeave(label) {
+function dragLeave() {
+    drop_note.style.display = 'none';
 }
 
