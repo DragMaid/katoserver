@@ -22,6 +22,7 @@ const imageDir = path.join(storageDir, 'images');
 const otherDir = path.join(storageDir, 'others');
 const filesRegistry = path.join(__dirname, 'file-registry.json');
 
+// express app configuration
 const app = new express();
 app.set('port', process.env.PORT || 3000);
 app.use('/', express.static('sites'));
@@ -30,6 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded( { extended: false } ));
 app.use(upload());
 
+// utility functions declaration
 function respond(res, code) {
     res.writeHead(code, {
         "Content-Type": "text/plain",
@@ -37,6 +39,9 @@ function respond(res, code) {
     }); res.end(); 
 }
 
+// ================================================================ //
+// ========================= KATODRIVE ============================ //
+// ================================================================ //
 
 app.post("/upload", function(req, res) {
     var files = new Array(); var filearray;
@@ -83,6 +88,22 @@ app.post("/katodrive/delete", function(req, res) {
             }
         })
     });
+    setTimeout(function(){ 
+        if (!sent) respond(res, 500);
+        sent = true;
+    }, 3000);
+})
+
+// ================================================================ //
+// ========================= KATOFORUM ============================ //
+// ================================================================ //
+
+app.post("/katodrive/create", function(req, res) {
+    var sent = false;
+    const title = req.body.title;
+    const description = req.body.description;
+
+
     setTimeout(function(){ 
         if (!sent) respond(res, 500);
         sent = true;

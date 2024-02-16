@@ -1,42 +1,19 @@
-function nthIndex(str, pat, n) {
-    var L = str.length, i = -1;
-    while (n-- && i++ < L) {
-        i = str.indexOf(pat, i);
-        if (i < 0) break;
-    } return i;
+const post_overlay = document.querySelector('[post-creation-overlay]');
+const create_button = document.querySelector('[create-button]');
+const post_name_input = document.querySelector('[post-name-input]');
+const post_des_input = document.querySelector('[post-des-input]');
+
+function cancel_button_func() {
+    post_overlay.style.display = 'none';
 }
 
-const resultCardTemplate = document.querySelector("[result-card-template]");
-const resultContainer = document.querySelector("[result-container]");
-const searchInput = document.querySelector("[data-search]");
+function create_button_func() {
+    post_overlay.style.display = 'flex';
+}
 
-const pageURL = String(document.URL);
-const mainURL = pageURL.substring(0, nthIndex(pageURL, '/', 3));
-const sitesURL = mainURL + '/katoforum/posts';
-
-let sites = [];
-fetch(sitesURL)
-    .then(res => res.json())
-    .then(data => {
-        sites = data.map(site => {
-            const card = resultCardTemplate.content.cloneNode(true).children[0]
-            const header = card.querySelector("[data-header]")
-            const description = card.querySelector("[data-description]")
-
-            header.textContent = site.name
-            description.textContent = site.description
-            header.href = mainURL + '/katoforum/' + site.subdomain
-            description.href = mainURL + '/katoforum/' + site.subdomain
-            resultContainer.append(card)
-
-            return { name: site.name, description: site.description, element: card }
-        })
-    })
-
-searchInput.addEventListener("input", (e) => {
-    const value = e.target.value;
-    sites.forEach(site => {
-        const isVisible = site.name.includes(value) || site.description.includes(value)
-        site.element.classList.toggle("hide", !isVisible)
-    })
-})
+function post_button_func() {
+    const name = post_name_input.value;
+    const des = post_des_input.value;
+    console.log(name);
+    console.log(des);
+}

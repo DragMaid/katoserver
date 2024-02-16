@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="style.css">
     <!--Reload nodemon module-->
 	<script src="/reload/reload.js"></script>
-    <script src="index.js" defer></script>
 </head>
 
 <body>
@@ -20,9 +19,9 @@
 					<input type="search" id="search">
 				</div>
 				<div class="convinient-panel">
-					<div class="account-button">ACCOUNT</div>
-					<div class="introduction-button">INTRODUCTION</div>
-					<div class="post-button">POST</div>
+					<div class="account-button button-base">ACCOUNT</div>
+					<div class="introduction-button button-base">INTRODUCTION</div>
+					<div class="create-button button-base" onclick="create_button_func()" create-button>CREATE</div>
 				</div>
 			</div>
 			<div class="logo">
@@ -36,6 +35,23 @@
 			<div class="result-container" result-container></div>
 		</div>
 	</div>
+
+    <div class="post-creation-overlay" post-creation-overlay>
+        <div class="creation-form">
+            <div class="name-input">
+                <input type="text" post-name-input>
+                <div class="validate-button"> </div>
+            </div>
+            <div class="description-input">
+                <textarea rows="4" cols="50" type="text" post-des-input></textarea>
+            </div>
+            <div class="bottom-control-panel">
+                <div class="cancel-button button-base" onclick="cancel_button_func()">CANCEL</div>
+                <div class="post-submit button-base" onclick="post_button_func()">POST</div>
+            </div>
+        </div>
+    </div>
+
 	<template result-card-template>
 		<div class="result-card">
 			<img src="" alt="image">
@@ -45,6 +61,9 @@
 			</div>
 		</div>
 	</template>
+
+    <script src="index.js" defer></script>
+    <script src="post-process.js" defer></script>
 </body>
 
 </html>
