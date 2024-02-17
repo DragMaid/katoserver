@@ -1,0 +1,30 @@
+[
+    {
+        "name": "envdame",
+        "subdomain": "envdame",
+        "description": "khkt contest project",
+		"app": false
+    },
+
+    {
+        "name": "sgkspread",
+        "subdomain": "sgkspread",
+        "description": "startup contest project",
+		"app": false
+    },
+
+    {
+        "name": "katoforum",
+        "subdomain": "katoforum",
+        "description": "forum presenting kato projects",
+		"app": true
+    },
+
+    {
+        "name": "katodrive",
+        "subdomain": "katodrive",
+        "description": "a place to save your files",
+		"app": true
+    }
+
+]

@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "name": "Introduction",
+        "subdomain": "introduction",
+        "description": "basic instructions for new-comers",
+		"author": "anonymous"
+    }
+]
