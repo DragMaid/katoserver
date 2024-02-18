@@ -10,6 +10,28 @@ String.prototype.format = function() {
   return formatted;
 };
 
+async function copyToClipboard(textToCopy) {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(textToCopy);
+  } else {
+    const textarea = document.createElement('textarea');
+    textarea.value = textToCopy;
+	// Move the textarea outside the viewport to make it invisible
+    textarea.style.position = 'absolute';
+    textarea.style.left = '-99999999px';
+	document.body.prepend(textarea);
+	// highlight the content of the textarea element
+    textarea.select();
+    try {
+      document.execCommand('copy');
+    } catch (err) {
+      console.log(err);
+    } finally {
+      textarea.remove();
+    }
+  }
+}
+
 var last_card;
 function card_callback(card) {
 	const filename = card.getAttribute('name');
@@ -65,9 +87,13 @@ function delete_button_func(btn) {
     return;
 }
 
-function copy_button_func(btn) {
+async function copy_button_func(btn) {
     const url = btn.getAttribute('href');
-    navigator.clipboard.writeText(url);
+	try {
+		await copyToClipboard(url);
+	} catch (err) {
+		console.log(err);
+	}
 }
 
 var units = ['B', 'KB', 'MB', 'GB', 'TB'];
