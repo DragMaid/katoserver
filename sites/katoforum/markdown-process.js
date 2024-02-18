@@ -1,16 +1,16 @@
 const fs = require('fs');
-const mdit = require('markdown-it');
-const md = new mdit()
+const marked = require('marked');
 
 function convert_md_html(path, callback) {
-	const stream = fs.createReadStream(path);
-	let data = '';
+    const stream = fs.createReadStream(path);
+    let data = '';
 
-	stream.on('data', (chunk) => { data += chunk.toString(); });
-	stream.on('end', () => { 
-		const html = md.render(data);
-		callback(html);
-	})
+    stream.on('data', (chunk) => { data += chunk.toString(); });
+    stream.on('end', () => { 
+        const html = marked.parse(data);
+        callback(html);
+        return html;
+    })
 }
 
 module.exports = {

@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cp ./style.css ../posthtml/addons
-cp ./index.js ../posthtml/addons
+cp ./*.css ../posthtml/addons/
+cp ./*.js ../posthtml/addons/

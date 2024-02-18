@@ -19,6 +19,7 @@ urlContainer.setAttribute('url', mainURL);
 let posts = [];
 
 function load_post_cards() {
+    resultContainer.innerHTML = '';
 	fetch(postURL)
 		.then(res => res.json())
 		.then(data => {
@@ -26,14 +27,23 @@ function load_post_cards() {
 				const card = resultCardTemplate.content.cloneNode(true).children[0]
 				const header = card.querySelector("[data-header]")
 				const description = card.querySelector("[data-description]")
+                const thumbnail = card.querySelector("[thumbnail-container]");
+                const redirect = postURL + post.title + '.html'; 
+                const urlcover = card.querySelector('[url-cover]');
 
-				header.textContent = post.name
+                thumbnail.src = post.thumbnail;
+				header.textContent = post.title;
 				description.textContent = post.description
-				header.href = postURL + post.subdomain + '.html'
-				description.href = postURL + post.subdomain + '.html'
+                urlcover.href = redirect;
+
+                card.setAttribute('thumbnail', post.thumbnail);
+                card.setAttribute('title', post.title);
+                card.setAttribute('description', post.description);
+
 				resultContainer.append(card)
 
-				return { name: post.name, description: post.description, element: card }
+
+				return { thumbnail: post.thumbnail, name: post.name, description: post.description, element: card }
 			})
 		})
 

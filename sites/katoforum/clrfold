@@ -1,0 +1,3 @@
+echo "[]" > post-registry.json
+rm ./postentry/postmd/*.md
+rm ./postentry/posthtml/*.html
